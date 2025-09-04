@@ -1,0 +1,15 @@
+package javacode;
+import java.util.*;
+public class Calculator {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+		System.out.println("enter a number: ");
+		double n = input.nextDouble();
+		double result=0;
+        for (int i=0;i<5;i++)
+        {
+		  result = result + i ; 
+		}
+		System.out.println("result: "+ result);
+    }
+}
