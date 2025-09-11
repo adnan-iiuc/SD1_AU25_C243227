@@ -1,0 +1,45 @@
+ package secondclass;
+ import java.util.*;
+public class Secondclass
+{
+public static void main(String[] args) {
+int sum=0,even=0, odd=0, element=33, found =0;
+double avg;
+int [] arr = {51,10,15,29,25}; 
+//Store and print 5 numbers in an array
+for(int i=0;i<5;i++)
+    System.out.println(arr[i]); 
+//sort the array with assending order 
+Arrays.sort(arr);
+for (int i=0;i<5;i++)
+  System.out.println("sorted element  : " + arr[i] );
+//Find the smallest number in an array
+System.out.println("small:" + arr[0]);
+//Find the largest number in an array
+System.out.println("large:" + arr[4]);
+//find the average of the array
+for (int i=0;i<5;i++)
+     sum=sum+arr[i];
+avg=sum/5;
+System.out.println("avg: " + avg);
+//find the even or odd number in array
+for (int i=0;i<5;i++)
+     if (arr[1]%2==0)
+         even++;
+     else
+         odd++;
+System.out.println("even: "+even + " and " + "odd : " + odd);
+//find an element from the array
+for(int i=0;i<5;i++)
+{
+     if(arr[i]==element)
+     {
+        System.out.println("element have in index "+ i);
+        found =1;
+        break;
+     }
+}
+if (found==0)
+System.out.println("element not found");
+}
+}
