@@ -1,0 +1,19 @@
+package javacode;
+import java.util.*;
+public class UniqueJersey {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        int n = input.nextInt(); // খেলোয়াড়ের সংখ্যা (যতগুলো জার্সি নাম্বার আছে)
+
+        Set<Integer> jerseyNumbers = new TreeSet<>(); // ইউনিক নাম্বার রাখার জন্য Set
+
+        for (int i = 0; i < n; i++) {
+            int number = input.nextInt();  // একটি জার্সি নাম্বার ইনপুট নেয়
+            jerseyNumbers.add(number);     // সেট-এ যুক্ত করে (ডুপ্লিকেট হলে অটো বাদ দিবে)
+        }
+
+        System.out.println(jerseyNumbers);// ইউনিক সংখ্যা কতটি আছে, সেটা প্রিন্ট করে
+        System.out.println(jerseyNumbers.size());
+    }
+}
