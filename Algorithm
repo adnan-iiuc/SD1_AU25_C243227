@@ -1,0 +1,123 @@
+#include <bits/stdc++.h>
+using namespace std;
+using namespace std::chrono;
+
+// Insertion Sort
+void insertionSort(vector<int>& arr) {
+    for (int i = 1; i < (int)arr.size(); i++) {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+// Merge Sort
+void merge(vector<int>& arr, int left, int mid, int right) {
+    vector<int> temp;
+    int i = left, j = mid + 1;
+
+    while (i <= mid && j <= right) {
+        if (arr[i] < arr[j]) temp.push_back(arr[i++]);
+        else temp.push_back(arr[j++]);
+    }
+
+    while (i <= mid) temp.push_back(arr[i++]);
+    while (j <= right) temp.push_back(arr[j++]);
+
+    for (int k = 0; k < (int)temp.size(); k++) {
+        arr[left + k] = temp[k];
+    }
+}
+
+void mergeSort(vector<int>& arr, int left, int right) {
+    if (left >= right) return;
+    int mid = (left + right) / 2;
+    mergeSort(arr, left, mid);
+    mergeSort(arr, mid + 1, right);
+    merge(arr, left, mid, right);
+}
+
+// Quick Sort
+int partition(vector<int>& arr, int low, int high) {
+    int pivot = arr[high];
+    int i = low - 1;
+
+    for (int j = low; j < high; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[i + 1], arr[high]);
+    return i + 1;
+}
+
+void quickSort(vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+// Generates n random integers
+vector<int> generateData(int n) {
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++)
+        arr[i] = rand();
+    return arr;
+}
+
+int main() {
+
+    vector<int> sizes = {10, 100, 1000, 10000, 100000};
+
+    string studentName = "A M Kofil uddin Adnan";
+    string studentID = "C243227";
+
+    for (int n : sizes) {
+        vector<int> data = generateData(n);
+
+        // Insertion Sort
+        vector<int> arr1 = data;
+        auto start = high_resolution_clock::now();
+        insertionSort(arr1);
+        auto end = high_resolution_clock::now();
+        double time = duration<double>(end - start).count();
+
+        cout << studentName << " | " << studentID
+             << " | Insertion Sort | N=" << n
+             << " | Time=" << time << " sec\n";
+
+        // Merge Sort
+        vector<int> arr2 = data;
+        start = high_resolution_clock::now();
+        mergeSort(arr2, 0, n - 1);
+        end = high_resolution_clock::now();
+        time = duration<double>(end - start).count();
+
+        cout << studentName << " | " << studentID
+             << " | Merge Sort | N=" << n
+             << " | Time=" << time << " sec\n";
+
+        // Quick Sort
+        vector<int> arr3 = data;
+        start = high_resolution_clock::now();
+        quickSort(arr3, 0, n - 1);
+        end = high_resolution_clock::now();
+        time = duration<double>(end - start).count();
+
+        cout << studentName << " | " << studentID
+             << " | Quick Sort | N=" << n
+             << " | Time=" << time << " sec\n";
+        cout<<endl;
+
+    }
+
+    return 0;
+}
+
